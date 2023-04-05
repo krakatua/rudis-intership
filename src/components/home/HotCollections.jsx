@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
 
@@ -34,7 +34,7 @@ const HotCollections = () => {
 
           {posts.map((post, index) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}
-            >
+            onClick={() => navigate(`/${post.nftId}`)}>
             <div className="nft_coll">
               <div className="nft_wrap">
                 <Link to="/item-details">
@@ -43,7 +43,7 @@ const HotCollections = () => {
               </div>
               <div className="nft_coll_pp">
                 <Link to="/author">
-                  <img className="lazy pp-coll" src={post.AuthorImage} alt="" />
+                  <img className="lazy pp-coll" src={AuthorImage} alt="" />
                 </Link>
                 <i className="fa fa-check"></i>
               </div>

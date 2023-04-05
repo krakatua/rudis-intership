@@ -10,12 +10,13 @@ const ItemDetails = () => {
     window.scrollTo(0, 0);
   }, []);
 
+
+
   const { id } = useParams();
-  const [searchId, setSearchId] = useState(id);
   const [posts, setPost] = useState([])
 
-  async function fetchingUsers(userId) {
-    const { data } = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections?authorId=${userId || id}`)
+  async function fetchingUsers(nftId) {
+    const { data } = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections?authorId=${nftId || id}`)
     setPost(data)
     console.log(data)
   }
@@ -36,7 +37,7 @@ const ItemDetails = () => {
         <section aria-label="section" className="mt90 sm-mt-0">
           <div className="container">
             <div className="row">
-              {posts.map((post) => (
+              {posts.filter(post => post.nftId !== id).map((post) => (
                 <div className="col-md-6 text-center">
                 <img
                   src={post.nftImage}
